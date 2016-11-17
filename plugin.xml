@@ -7,8 +7,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <description>Cordova plugin for Firebase Analytics</description>
     <license>MIT</license>
     <keywords>cordova</keywords>
-    <repo>https://github.com/chemerisuk/cordova-plugin-firebase-analytics</repo>
-    <issue>https://github.com/chemerisuk/cordova-plugin-firebase-analytics/issues</issue>
+    <repo>https://github.com/MuhammadAziz/cordova-plugin-firebase-analytics</repo>
+    <issue>https://github.com/MuhammadAziz/cordova-plugin-firebase-analytics/issues</issue>
 
     <js-module src="www/FirebaseAnalytics.js" name="FirebaseAnalytics">
         <merges target="cordova.plugins.firebase.analytics" />
@@ -17,8 +17,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <engines>
         <engine name="cordova" version=">=3.5.0"/>
     </engines>
-
-    <dependency id="cordova-plugin-firebase-hooks"/>
 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -31,13 +29,29 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <header-file src="src/ios/FirebaseAnalyticsPlugin.h" />
         <source-file src="src/ios/FirebaseAnalyticsPlugin.m" />
 
-        <pod id="Firebase/Analytics" />
+        <header-file src="src/ios/Firebase/Firebase.h" />
+
+        <framework src="src/ios/Firebase/Analytics/FirebaseCore.framework" custom="true" />
+        <framework src="src/ios/Firebase/Analytics/FirebaseAnalytics.framework" custom="true" />
+        <framework src="src/ios/Firebase/Analytics/FirebaseInstanceID.framework" custom="true" />
+        <framework src="src/ios/Firebase/Analytics/GoogleInterchangeUtilities.framework" custom="true" />
+        <framework src="src/ios/Firebase/Analytics/GoogleSymbolUtilities.framework" custom="true" />
+        <framework src="src/ios/Firebase/Analytics/GoogleToolboxForMac.framework" custom="true" />
+        <!-- <framework src="AdSupport.framework" /> -->
+
+        <!-- OTHER NEEDED LIBS -->
+        <framework src="libc++.tbd" />
+        <framework src="libz.tbd" />
+            <framework src="AddressBook.framework" />
+        <framework src="libsqlite3.0.tbd" />
+        <framework src="libz.tbd" />
+        <framework src="Security.framework" />
     </platform>
 
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="FirebaseAnalytics">
-                <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseAnalyticsPlugin" />
+                <param name="android-package" value="com.mitrais.cordova.firebase.FirebaseAnalyticsPlugin" />
                 <param name="onload" value="true" />
             </feature>
         </config-file>
@@ -49,7 +63,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <framework src="com.google.firebase:firebase-core:+" />
 
         <source-file src="src/android/FirebaseAnalyticsPlugin.java"
-            target-dir="src/by/chemerisuk/cordova/firebase/" />
+            target-dir="src/com/mitrais/cordova/firebase/" />
     </platform>
 
 </plugin>
